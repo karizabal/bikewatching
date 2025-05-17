@@ -17,17 +17,22 @@
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <h1>🚴🏼‍♀️ Bikewatching: Explore Bike Traffic in Boston, MA, USA</h1>
     <header>
+      <h1>🚴🏼‍♀️ Bikewatching</h1>
       <label for="time-slider">
         FILTER BY TIME:
         <input id="time-slider" type="range" min="-1" max="1440" value="-1">
-        <p id="any-time">(ANY TIME)</p>
+        <p id="any-time">(Any Time)</p>
         <time id="selected-time"></time>
       </label>
     </header>
     <div id="map">
       <svg></svg>
+    </div>
+    <div class="legend">
+      <div style="--departure-ratio: 1">More departures</div>
+      <div style="--departure-ratio: 0.5">Balanced</div>
+      <div style="--departure-ratio: 0">More arrivals</div>
     </div>
     <div id="tooltip" style="position:absolute;pointer-events:none;opacity:0"></div>
   </body>

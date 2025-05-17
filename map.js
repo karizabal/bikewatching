@@ -24,6 +24,8 @@ let timeSlider;
 let selectedTime;
 let anyTimeLabel;
 
+let stationFlow = d3.scaleQuantize().domain([0, 1]).range([0, 0.5, 1]);
+
 function getCoords(station) {
   const point = new mapboxgl.LngLat(+station.lon, +station.lat); // Convert lon/lat to Mapbox LngLat
   const { x, y } = map.project(point); // Project to pixel coordinates
@@ -63,7 +65,10 @@ function updateScatterPlot(timeFilter) {
   circles
     .data(filteredStations, (d) => d.short_name)
     .join('circle') // Ensure the data is bound correctly
-    .attr('r', (d) => radiusScale(d.totalTraffic)); // Update circle sizes
+    .attr('r', (d) => radiusScale(d.totalTraffic))
+    .style('--departure-ratio', (d) =>
+      stationFlow(d.departures / d.totalTraffic),
+    ); // Update circle sizes
 }
 
 function computeStationTraffic(stations, trips) {
@@ -174,6 +179,9 @@ map.on('load', async () => {
     .attr('stroke', 'white') // Circle border color
     .attr('stroke-width', 1) // Circle border thickness
     .attr('fill-opacity', 0.6) // Circle opacity
+    .style('--departure-ratio', (d) =>
+      stationFlow(d.departures / d.totalTraffic),
+    )
     .on('mouseover', (event, d) => {
       tooltip
         .html(`${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`)

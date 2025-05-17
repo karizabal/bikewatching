@@ -26,3 +26,31 @@ body {
 #map svg circle {
   pointer-events: auto !important;
 }
+
+#map svg circle, .legend div {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+  fill: var(--color);
+}
+
+.legend {
+  display: flex;
+  margin-block: 0.5em;
+  width: 90%;
+}
+
+.legend div {
+  background-color: var(--color);
+  color: white;
+  gap: 1px;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: x-small;
+  text-transform: uppercase;
+}

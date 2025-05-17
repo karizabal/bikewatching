@@ -12,18 +12,19 @@ body {
 header {
     display: flex;
     gap: 1em;
-    align-items: flex-end;
-    margin-left: auto;
+    width: 100%;
+    justify-content: space-between;
     
     #time-slider {
         width: 100%;
-        max-width: 900px;
+        max-width: 1000px;
     }
 
     p {
         text-align: right;
         margin: 0.75em;
         font-weight: lighter;
+        text-transform: uppercase;
     }
 
     time {

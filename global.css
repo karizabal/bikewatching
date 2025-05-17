@@ -8,3 +8,41 @@ body {
     margin: auto;
     padding: 1em;
 }
+
+header {
+    display: flex;
+    gap: 1em;
+    align-items: flex-end;
+    margin-left: auto;
+    
+    #time-slider {
+        width: 100%;
+        max-width: 900px;
+    }
+
+    p {
+        text-align: right;
+        margin: 0.75em;
+        font-weight: lighter;
+    }
+
+    time {
+        display: block;
+        margin: 0.75em;
+        text-align: right;
+    }
+}
+
+#tooltip {
+    position: absolute;       /* now relative to the page */
+    pointer-events: none;     /* don’t steal mouse events */
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 1000;            /* sit on top of everything */
+    opacity: 0;
+    transition: opacity 0.1s;
+    white-space: nowrap;      /* keep it on one line */
+}
